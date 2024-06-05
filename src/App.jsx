@@ -1,42 +1,31 @@
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react'
 import './App.css'
+import { FadeLoader } from 'react-spinners'
 
 function App() {
 
-  // const todayQuote = async () => {
-  //   const url = "https://zenquotes.io/api/today";
-  //   const response = await fetch(url);
-  //   console.log(response);
-  //   const data = await response.json();
-  //   return data;
-  // }
-  // let quoteOfTheDay = todayQuote();
-
   const [quote, setQuote] = useState(null);
+  const [loading, setLoading] = useState(false)
 
   const handleQuotes = async (e) => {
 
     e.preventDefault();
-    const apiKey = "5mF1kwUcslFYmOpmVHEV8w==uH3yGQoATwxosfAv";
 
     try {
-      const options = {
-        method: "GET",
-        headers: {
-          "X-Api-Key": apiKey,
-        },
-      };
-      const apiURL = 'https://api.api-ninjas.com/v1/quotes?category=happiness';
-
-      const response = await fetch(apiURL, options);
+      const apiURL = 'https://api.adviceslip.com/advice';
+      setLoading(true)
+      const response = await fetch(apiURL);
       const data = await response.json();
+      setLoading(false)
 
-      console.log(data[0])
+      setQuote(data.slip.advice)
 
     } catch (error) {
       console.log("There was an error")
+      setLoading(false)
     }
   }
 
@@ -47,8 +36,14 @@ function App() {
         <h1>By: <a href="https://github.com/Denzel60">Denzel Lawrence</a></h1>
         <button type="button" onClick={handleQuotes}>Generate Random Quote</button>
       </div>
+
+      <hr />
       <h2>{quote}</h2>
-      <h2>Random Quote: {setQuote}</h2>
+      <hr />
+
+      <div className="loader">
+        {loading && <FadeLoader size={50} color="#000000" />}
+      </div>;
     </>
   )
 }
