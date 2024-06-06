@@ -25,6 +25,7 @@ function App() {
 
     } catch (error) {
       console.log("There was an error")
+      setQuote("There was an error")
       setLoading(false)
     }
   }
