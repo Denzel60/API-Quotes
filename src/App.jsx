@@ -34,7 +34,7 @@ function App() {
   return (
     <>
       <div className="quotes-container">
-        <h1>By: <a href="https://github.com/Denzel60">Denzel Lawrence</a></h1>
+        <h1>By: <a href="https://github.com/Denzel60" target='blank'>Denzel Lawrence</a></h1>
         <button disabled={loading} type="button" onClick={handleQuotes}>Generate Random Quote</button>
       </div>
 
