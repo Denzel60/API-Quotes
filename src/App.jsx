@@ -34,7 +34,7 @@ function App() {
     <>
       <div className="quotes-container">
         <h1>By: <a href="https://github.com/Denzel60">Denzel Lawrence</a></h1>
-        <button type="button" onClick={handleQuotes}>Generate Random Quote</button>
+        <button disabled={loading} type="button" onClick={handleQuotes}>Generate Random Quote</button>
       </div>
 
       <hr />
@@ -43,7 +43,7 @@ function App() {
 
       <div className="loader">
         {loading && <FadeLoader size={50} color="#000000" />}
-      </div>;
+      </div>
     </>
   )
 }
